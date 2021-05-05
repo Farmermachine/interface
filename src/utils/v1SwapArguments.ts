@@ -1,5 +1,5 @@
 import { MaxUint256 } from '@ethersproject/constants'
-import { CurrencyAmount, ETHER, SwapParameters, Token, Trade, TradeOptionsDeadline, TradeType } from 'pawsswap-sdk'
+import { CurrencyAmount, ETHER, SwapParameters, Token, Trade, TradeType } from 'pawsswap-sdk'
 import { getTradeVersion } from '../data/V1'
 import { Version } from '../hooks/useToggledVersion'
 
@@ -12,10 +12,7 @@ function toHex(currencyAmount: CurrencyAmount): string {
  * @param trade trade to get v1 arguments for swapping
  * @param options options for swapping
  */
-export default function v1SwapArguments(
-  trade: Trade,
-  options: Omit<TradeOptionsDeadline, 'feeOnTransfer'>
-): SwapParameters {
+export default function v1SwapArguments(trade: Trade, options: Omit<any, 'feeOnTransfer'>): SwapParameters {
   if (getTradeVersion(trade) !== Version.v1) {
     throw new Error('invalid trade version')
   }
